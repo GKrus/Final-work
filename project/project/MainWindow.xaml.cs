@@ -14,10 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HelixToolkit;
 using HelixToolkit.Wpf;
-using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
-
 
 namespace project
 {
@@ -43,23 +41,30 @@ namespace project
         double sl8;
         double sl9;
         double sl10;
+
         public MainWindow()
         {
             InitializeComponent();
             Create3DViewPort();
         }
 
+
+
         //private void Create3DViewPort() { var hVp3D = new HelixViewport3D(); }
         private void Create3DViewPort()
         {
             var hVp3D = new HelixViewport3D();
+
             var lights = new DefaultLights();
             var teaPot = new Teapot();
+            
+
             hVp3D.Children.Add(lights);
             hVp3D.Children.Add(teaPot);
-           // this.AddChild(hVp3D);
-            
         }
+
+        //------------------------------------------------------------------------------------------------------
+
         // example from zip
         //private ModelVisual3D CreateDice()
         //{
@@ -106,6 +111,10 @@ namespace project
             //side = Slider.NameProperty.Get
             string i = Convert.ToString(up);
             MessageBox.Show(i);
+
+            //------------------------------------------------------------------------------------------------------
+
+
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -159,5 +168,53 @@ namespace project
         {
             sl10 = ((Slider)sender).Value;
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
+
+    //создание предметов черезе доп класс
+    //http://qiita.com/ousttrue/items/a7ffefeaa4b642a054bd
+
+    public class MainViewModel
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
+        public MainViewModel()
+        {
+            // Create a model group
+            var modelGroup = new Model3DGroup();
+
+            // Create a mesh builder and add a box to it
+            var meshBuilder = new MeshBuilder(false, false);
+            meshBuilder.AddBox(new Point3D(0, 0, 1), 1, 2, 0.5);
+            meshBuilder.AddBox(new Rect3D(0, 0, 1.2, 0.5, 1, 0.4));
+
+            // Create a mesh from the builder (and freeze it)
+            var mesh = meshBuilder.ToMesh(true);
+
+            // Create some materials
+            var greenMaterial = MaterialHelper.CreateMaterial(Colors.Green);
+            var redMaterial = MaterialHelper.CreateMaterial(Colors.Red);
+            var blueMaterial = MaterialHelper.CreateMaterial(Colors.Blue);
+            var insideMaterial = MaterialHelper.CreateMaterial(Colors.Yellow);
+
+            // Add 3 models to the group (using the same mesh, that's why we had to freeze it)
+            modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Material = greenMaterial, BackMaterial = insideMaterial });
+            modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Transform = new TranslateTransform3D(-2, 0, 0), Material = redMaterial, BackMaterial = insideMaterial });
+            modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Transform = new TranslateTransform3D(2, 0, 0), Material = blueMaterial, BackMaterial = insideMaterial });
+
+            // Set the property, which will be bound to the Content property of the ModelVisual3D (see MainWindow.xaml)
+            this.Model = modelGroup;
+        }
+
+        /// <summary>
+        /// Gets or sets the model.
+        /// </summary>
+        /// <value>The model.</value>
+        public Model3D Model { get; set; }
     }
 }
