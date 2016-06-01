@@ -45,23 +45,19 @@ namespace project
         public MainWindow()
         {
             InitializeComponent();
-            Create3DViewPort();
-        }
-
-
-
-        //private void Create3DViewPort() { var hVp3D = new HelixViewport3D(); }
-        private void Create3DViewPort()
-        {
-            var hVp3D = new HelixViewport3D();
-
-            var lights = new DefaultLights();
+            var viewPort3d = new HelixViewport3D();
+            var light = new DirectionalHeadLight();
+            light.Color = Colors.Red;
+            light.Brightness = 0.8;
+            light.Position = new Point3D(0, -10, 2);
             var teaPot = new Teapot();
-            
-
-            hVp3D.Children.Add(lights);
-            hVp3D.Children.Add(teaPot);
+            viewPort3d.Children.Add(light);
+            viewPort3d.Children.Add(teaPot);
         }
+
+
+
+        //private void Create3DViewPort() { var hVp3D = new HelixViewport3D(); 
 
         //------------------------------------------------------------------------------------------------------
 
