@@ -31,148 +31,128 @@ namespace project
         double stif;
         double filling;
         double flags;
-        double sl1;
-        double sl2;
-        double sl3;
-        double sl4;
-        double sl5;
-        double sl6;
-        double sl7;
-        double sl8;
-        double sl9;
-        double sl10;
+       
 
         public MainWindow()
         {
             InitializeComponent();
-            var viewPort3d = new HelixViewport3D();
-            var light = new DirectionalHeadLight();
-            light.Color = Colors.Red;
-            light.Brightness = 0.8;
-            light.Position = new Point3D(0, -10, 2);
-            var teaPot = new Teapot();
-            viewPort3d.Children.Add(light);
-            viewPort3d.Children.Add(teaPot);
+
+           // var viewPort3d = new HelixViewport3D();
+            
+
+            //viewPort3d.Children.Add(new Teapot());
+
+            ModelVisual3D device3D = new ModelVisual3D();
+            device3D.Content = Display3d(MODEL_PATH);
+            // Add to view port
+            viewPort3d.Children.Add(device3D);
+
+            //var cube = new CubeVisual3D();
+            //cube.Fill = Brushes.Red;
+            //viewPort3d.Children.Add(cube);
         }
 
-
-
-        //private void Create3DViewPort() { var hVp3D = new HelixViewport3D(); 
-
         //------------------------------------------------------------------------------------------------------
-
-        // example from zip
-        //private ModelVisual3D CreateDice()
-        //{
-        //    var diceMesh = new MeshBuilder();
-        //    diceMesh.AddBox(new Point3D(0, 0, 0), 1, 1, 1);
-        //    for (int i = 0; i < 2; i++)
-        //        for (int j = 0; j < 2; j++)
-        //            for (int k = 0; k < 2; k++)
-        //            {
-        //                var points = new List<Point3D>();
-        //                diceMesh.ChamferCorner(new Point3D(i - 0.5, j - 0.5, k - 0.5), 0.1, 1e-6, points);
-        //                //foreach (var p in points)
-        //                //    b.ChamferCorner(p, 0.03);
-        //            }
-
-        //    return new ModelVisual3D { Content = new GeometryModel3D { Geometry = diceMesh.ToMesh(), Material = Materials.White } };
-        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //расчет коэфицоентов 
             double max = 0;
-            if (sl1 > sl2) max = sl1;
-            else max = sl2;
-            if (sl3 > max) max = sl3;
-            if (sl4 > sl3) max = sl4;
-            if (sl5 > sl4) max = sl5;
-            if (max - sl1 < 5 && max - sl2 < 5 && max - sl3 < 5 && max - sl4 < 5 && max - sl5 < 5)
+            if (nose.Value > chin.Value) max = nose.Value;
+            else max = chin.Value;
+            if (eyes.Value > max) max = eyes.Value;
+            if (lips.Value > eyes.Value) max = eyes.Value;
+            if (skin.Value > lips.Value) max = skin.Value;
+            if (max - nose.Value < 5 && max - chin.Value < 5 && max - eyes.Value < 5 && max - lips.Value < 5 && max - skin.Value < 5)
             {
-                sharp = (sl1 + sl2 + sl3 + sl4 + sl5) / 5;
+                sharp = (nose.Value + chin.Value + eyes.Value + lips.Value + skin.Value) / 5;
                 //if small
             } 
             else
             {
-                sharp = max - (sl1 + sl2 + sl3 + sl4 + sl5) / 10;
+                sharp = max - (nose.Value + chin.Value + eyes.Value + lips.Value + skin.Value) / 10;
                 //sharp = (sl1 + sl2 + sl3 + sl4 + sl5) / 5;
             } // sharp -- ok
-            up = (sl6*2 + sl3 + sl7 + sl9*2) / 6;//ok?
-            back = sl8;//ok
-            stif = (sharp*1.3 + sl5*2) / 3.3;//ok
-            filling = (sharp + sl7) / 2;//ok?
-            flags = sl7;//ok
-            side = sl10;//ok
+            up = (forehead.Value*2 + eyes.Value + cheelbones.Value + face_width.Value*2) / 6;//ok?
+            back = ears.Value;//ok
+            stif = (sharp*1.3 + skin.Value*2) / 3.3;//ok
+            filling = (sharp + cheelbones.Value) / 2;//ok?
+            flags = cheelbones.Value;//ok
+            side = face_length.Value;//ok
+            var lights = new DirectionalHeadLight();
+
+            lights.Color = Colors.White;
+            lights.Brightness = 1;
+            lights.Position = new Point3D(5, -5, 5);
+            //viewPort3d.Children.Add(lights);
             //side = Slider.NameProperty.Get
-            string i = Convert.ToString(up);
-            MessageBox.Show(i);
+            //string i = Convert.ToString(sharp);
+            //MessageBox.Show(i);
 
             //------------------------------------------------------------------------------------------------------
 
 
         }
+        // имопрт модели 
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private const string MODEL_PATH = "Female Head.obj";
+         //<summary>
+         //Display 3D Model
+         //</summary>
+         //<param name="model">Path to the Model file</param>
+         //<returns>3D Model Content</returns>
+        private Model3D Display3d(string model)
         {
-            sl1 = ((Slider)sender).Value;
-            
-           
+            Model3D device = null;
+            try
+            {
+                ModelImporter import = new ModelImporter();
+
+                //Load the 3D model file
+                device = import.Load(model);
+
+                
+                var axis_z = new Vector3D(1, 0, 0);
+                var axis_y = new Vector3D(0, 1, 0);
+                var angle_z = 120;
+                var angle_y = 180;
+
+                var matrix = device.Transform.Value;
+                matrix.Rotate(new Quaternion(axis_y, angle_y));
+                matrix.Rotate(new Quaternion(axis_z, angle_z));
+
+                device.Transform = new MatrixTransform3D(matrix);
+
+
+            }
+            catch (Exception e)
+            {
+                 //Handle exception in case can not find the 3D model file
+                MessageBox.Show("Exception Error : " + e.StackTrace);
+            }
+            return device;
         }
+       
 
-        private void Slider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void def_light_Click(object sender, RoutedEventArgs e)
         {
-            sl2 = ((Slider)sender).Value;
-        }
+            var light = new ThreePointLights();
 
-        private void Slider_ValueChanged_2(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl3 = ((Slider)sender).Value;
-        }
+            //light.FillLightSideAngle = 180;
+            //light.FillLightAngle = 0;
+            light.KeyLightSideAngle = 30;//ok
+            light.KeyLightAngle = 115;//ok
+            light.KeyToFillLightRatio = 1 / 2;
+            light.FillLightAngle = 115;
+            light.FillLightSideAngle = 0;
 
-        private void Slider_ValueChanged_3(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl4 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_4(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl5 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_5(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl6 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_6(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl7 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_7(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl8 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_8(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl9 = ((Slider)sender).Value;
-        }
-
-        private void Slider_ValueChanged_9(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            sl10 = ((Slider)sender).Value;
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            light.KeyToRimLightRatio = 1 / 1000;
+            light.ShowLights = true;
+            //light.Brightness = 1;
+            //light.Position = new Point3D(-5, -5, 5);
+            viewPort3d.Children.Add(light);
         }
     }
-
-    //создание предметов черезе доп класс
-    //http://qiita.com/ousttrue/items/a7ffefeaa4b642a054bd
 
     public class MainViewModel
     {
