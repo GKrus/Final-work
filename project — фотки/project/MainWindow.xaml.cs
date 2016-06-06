@@ -16,6 +16,7 @@ using HelixToolkit;
 using HelixToolkit.Wpf;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
+using Microsoft.Win32;
 
 namespace project
 {
@@ -34,6 +35,8 @@ namespace project
         ThreePointLights light;
         SunLight sun_light;
         int i;
+        Line line;
+        bool draw;
        
 
         public MainWindow()
@@ -42,7 +45,6 @@ namespace project
             i = 0;
             light = new ThreePointLights();
             nose_com.IsReadOnly = true;
-           // var viewPort3d = new HelixViewport3D();
             //var studio_light = new DefaultLights();
             //studio_light.Brightness = 0.3;
             //studio_light.Position = new Point3D(-5, -5, 5);
@@ -55,6 +57,7 @@ namespace project
             device3D.Content = Display3d(MODEL_PATH);
             // Add to view port
             viewPort3d.Children.Add(device3D);
+            viewPort3d.Visibility = Visibility.Hidden;
 
             //var cube = new CubeVisual3D();
             //cube.Fill = Brushes.Red;
@@ -89,6 +92,16 @@ namespace project
             flags = cheelbones.Value;//ok
             side = face_length.Value;//ok
 
+            light.KeyLightBrightness = 0.8;
+            light.KeyLightSideAngle = 30;//ok
+            light.KeyLightAngle = 115;//ok
+            light.KeyToFillLightRatio = 1 / 1;
+            light.FillLightAngle = 310;
+            light.FillLightSideAngle = 310;
+            light.RimLightAngle = 30;
+            light.KeyToRimLightRatio = 1 / 1.5;
+            light.ShowLights = true;
+
             if (back > 5) light.KeyToFillLightRatio = 1 / 100;
             else light.KeyToFillLightRatio = 1 / 0.9;
            
@@ -113,14 +126,9 @@ namespace project
             {
                 light.KeyLightAngle += 10 - up * 2;
             }
-
-           
-            
             //MessageBox.Show("Ok");
         }
 //---------------------------------------------------------------------------------------------------------------------
-
-
         
         // имопрт модели 
 
@@ -213,6 +221,7 @@ namespace project
         {
             nose_tick.Visibility = Visibility.Visible;
             nose_com.Visibility = Visibility.Visible;
+            nose_com.IsEnabled = true;
 
             if (nose.Value < 3)
                 nose_com.Text = "С этим носом будет минимум проблем";
@@ -223,6 +232,237 @@ namespace project
             }
             //MessageBox.Show("Ok");
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            nose_tick.Visibility = Visibility.Visible;
+            nose_com.Visibility = Visibility.Visible;
+            nose_com.IsEnabled = true;
+
+            sharp_tick.Visibility = Visibility.Visible;
+            sharp_com.Visibility = Visibility.Visible;
+            sharp_com.IsEnabled = true;
+            up_tick.Visibility = Visibility.Visible;
+            up_com.Visibility = Visibility.Visible;
+            up_com.IsEnabled = true;
+            back_tick.Visibility = Visibility.Visible;
+            back_com.Visibility = Visibility.Visible;
+            back_com.IsEnabled = true;
+            stif_tick.Visibility = Visibility.Visible;
+            stif_com.Visibility = Visibility.Visible;
+            stif_com.IsEnabled = true;
+            flags_tick.Visibility = Visibility.Visible;
+            flags_com.Visibility = Visibility.Visible;
+            flags_com.IsEnabled = true;
+
+            if (nose.Value < 3)
+                nose_com.Text = "С этим носом будет минимум проблем";
+            else
+            {
+                nose_com.Text = "Обратите внимание на тени от носа, они могут Вас не обрадовать";
+                if (nose.Value > 6) nose_com.Text = "Тени от носа Вас не обрадуют, вероятно";
+            }
+
+            if (sharp < 3)
+                sharp_com.Text = "Вы можете использоваит любые углы падения света";
+            else
+            {
+                sharp_com.Text = "Не рекомендуется использовать резкие углы постановки света";
+                if (sharp > 6) sharp_com.Text = "Резкие углы постановки света неуместны";
+            }
+
+            if (up < 3)
+                up_com.Text = "Использование верхнего света не доставит неудобств";
+            else
+            {
+                up_com.Text = "Не рекомендуется использовать верхний свет";
+                if (up > 6) up_com.Text = "Верхний свет может значительно испортить вашу модель";
+            }
+
+            if (back < 3)
+                back_com.Text = "Конровой свет не испортит Вашу модель";
+            else
+            {
+                back_com.Text = "Следует внимательно отнестись к работе контрового света";
+                if (back > 6) back_com.Text = "Контровой свет приченит неудобства";
+            }
+
+            if (stif < 3)
+                stif_com.Text = "Вы вольны использовать жесткий свет";
+            else
+            {
+                stif_com.Text = "Отнеситесь к жесткости света внимательно";
+                if (stif > 6) stif_com.Text = "Жесткий свет окажет негативное влияние";
+            }
+
+            if (flags < 3)
+                flags_com.Text = "Черные флаги помогут в отрисовке скул";
+            else
+            {
+                flags_com.Text = "Флаги следует устанавливать по вкусу";
+                if (flags > 6) flags_com.Text = "Белые флаги будут уместны";
+            }
+
+            if (flags < 3)
+                flags_com.Text = "Черные флаги помогут в отрисовке скул";
+            else
+            {
+                flags_com.Text = "Флаги следует устанавливать по вкусу";
+                if (flags > 6) flags_com.Text = "Белые флаги будут уместны";
+            }
+
+            if (nose.Value > 5) 
+            {
+                side_tick.Visibility = Visibility.Visible;
+                side_com.Visibility = Visibility.Visible;
+                side_com.IsEnabled = true;
+                side_com.Text = "Обратите внимание на влияние бокового света (вытягивание лица и пр.)";
+            }
+            else
+            {
+                side_tick.Visibility = Visibility.Hidden;
+                side_com.Visibility = Visibility.Hidden;
+                side_com.IsEnabled = false;
+            }
+            
+            //MessageBox.Show("Ok");
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            nose.Value = 0;
+            chin.Value = 0;
+            eyes.Value = 0;
+            lips.Value = 0;
+            skin.Value = 0;
+            forehead.Value = 0;
+            cheelbones.Value = 0;
+            ears.Value = 0;
+            face_length.Value = 0;
+            face_width.Value = 0;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "JPEG Photos (*.jpg)|*.jpg|PNG Photos (*.png)|*.png | All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.ShowDialog();         
+   
+            BitmapImage bm1 = new BitmapImage();
+            bm1.BeginInit();
+
+            if (openFileDialog.FileName != "")
+            {
+                bm1.UriSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                bm1.CacheOption = BitmapCacheOption.OnLoad;
+                bm1.EndInit();
+                photo_fr.Source = bm1;
+
+            }
+            
+           
+
+        }
+
+        private void upload_fr_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "JPEG Photos (*.jpg)|*.jpg|PNG Photos (*.png)|*.png | All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.ShowDialog();
+
+            BitmapImage bm1 = new BitmapImage();
+            bm1.BeginInit();
+
+            if (openFileDialog.FileName != "")
+            {
+                bm1.UriSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                bm1.CacheOption = BitmapCacheOption.OnLoad;
+                bm1.EndInit();
+                photo_fr.Source = bm1;
+               
+            }
+            // MessageBox.Show("Файл не выбран!");
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (viewPort3d.Visibility != Visibility.Visible)
+            {
+                viewPort3d.Visibility = Visibility.Visible;
+                photo_fr.Visibility = Visibility.Hidden;
+                photo_sd.Visibility = Visibility.Hidden;
+                upload_fr.Visibility = Visibility.Hidden;
+                upload_sd.Visibility = Visibility.Hidden;
+                change.Content = "Перейти к фото";
+            }
+            else
+            {
+                viewPort3d.Visibility = Visibility.Hidden;
+                photo_fr.Visibility = Visibility.Visible;
+                photo_sd.Visibility = Visibility.Visible;
+                upload_fr.Visibility = Visibility.Visible;
+                upload_sd.Visibility = Visibility.Visible;
+                change.Content = "Перейти к 3D";
+            }
+        }
+
+        private void draw_fr_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+           
+            Point point = e.GetPosition(draw_fr);
+            line = new Line();
+            line.Stroke = Brushes.Black;
+            line.X1 = line.X2 = point.X;
+            line.Y1 = line.Y2 = point.Y;
+            draw_fr.Children.Add(line);
+            draw = true;
+        }
+        private void draw_fr_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            draw = false;
+            //draw_fr.InvalidateVisual();
+        }
+
+        private void draw_fr_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(draw)
+            {
+                Point pointEnd = e.GetPosition(draw_fr);
+                line.X2 = pointEnd.X;
+                line.Y2 = pointEnd.Y;
+            }
+        }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+       
+        private void draw_sd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void draw_sd_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void draw_sd_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
     }
 
     // доп  класс

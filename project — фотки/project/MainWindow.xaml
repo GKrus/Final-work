@@ -1,0 +1,65 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="project.MainWindow"
+        Title="" Height="626" Width="1044" Background="#FF151515">
+    <Grid Margin="-1,1,1,-1" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="286*"/>
+            <ColumnDefinition Width="225*"/>
+            <ColumnDefinition Width="414*"/>
+            <ColumnDefinition Width="86*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="nose" HorizontalAlignment="Left" Margin="91,30,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Uid="1" Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="chin" HorizontalAlignment="Left" Margin="91,58,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.5,0.5"  Uid="2" Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="eyes" HorizontalAlignment="Left" Margin="91,86,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="18" Grid.Column="2" Grid.ColumnSpan="2" />
+        <Slider x:Name="lips" HorizontalAlignment="Left" Margin="91,114,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="skin" HorizontalAlignment="Left" Margin="91,143,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="forehead" HorizontalAlignment="Left" Margin="91,171,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="cheelbones" HorizontalAlignment="Left" Margin="91,199,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Slider x:Name="ears" HorizontalAlignment="Left" Margin="91,227,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label Content="Нос" HorizontalAlignment="Right" Margin="0,0,199.667,544" VerticalAlignment="Bottom" Height="25" Width="96" Grid.ColumnSpan="3" MouseDoubleClick="Label_MouseDoubleClick" />
+        <Label Content="Подбородок" HorizontalAlignment="Left" Margin="15,54,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Глаза" HorizontalAlignment="Left" Margin="15,82,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Губы" HorizontalAlignment="Left" Margin="15,110,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Кожа" HorizontalAlignment="Left" Margin="15,139,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Лоб" HorizontalAlignment="Left" Margin="15,167,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Скулы" HorizontalAlignment="Left" Margin="15,195,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Label Content="Уши" HorizontalAlignment="Left" Margin="15,223,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Slider x:Name="face_width" HorizontalAlignment="Left" Margin="91,254,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label Content="Ширина лица" HorizontalAlignment="Left" Margin="15,250,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Slider x:Name="face_length" HorizontalAlignment="Left" Margin="91,281,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label Content="Длина лица" HorizontalAlignment="Left" Margin="15,277,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
+        <Button Content="Расчитать " HorizontalAlignment="Left" Margin="0,311,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="20" BorderThickness="1" Cursor="Arrow" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <h:HelixViewport3D x:Name="viewPort3d" ZoomExtentsWhenLoaded="true" Margin="10" Grid.ColumnSpan="2" Grid.Column="4" RotateAroundMouseDownPoint="True"   />
+        <Button x:Name="def_light" Content="Свет по умолчанию" Grid.Column="2" Margin="165,311,0,0" VerticalAlignment="Top" Click="def_light_Click"/>
+        <Button Content="Максимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,311,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1"/>
+        <CheckBox x:Name="nose_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="nose_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,30,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="sharp_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="sharp_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,90,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="up_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="up_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,150,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="back_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="back_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,210,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="stif_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="stif_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,270,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="flags_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="flags_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,330,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <CheckBox x:Name="side_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
+        <TextBox x:Name="side_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,390,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
+        <Button Content="Комментарии" Grid.Column="1" HorizontalAlignment="Left" Margin="0,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_2" Grid.ColumnSpan="2"/>
+        <Button Content="Минимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_3"/>
+        <Canvas x:Name="draw_fr" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_fr_MouseDown" MouseUp="draw_fr_MouseUp" MouseMove="draw_fr_MouseMove"/>
+        <Canvas x:Name="draw_sd" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_sd_MouseDown" MouseUp="draw_sd_MouseUp" MouseMove="draw_sd_MouseMove"/>
+        <Button x:Name="upload_fr" Content="Загрузить фотографию в фас" Grid.Column="3" HorizontalAlignment="Left" Margin="117,438,0,0" VerticalAlignment="Top" Width="193" Click="upload_fr_Click" Grid.ColumnSpan="2"/>
+        <Image x:Name="photo_fr" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
+        <Image x:Name="photo_sd" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2" />
+        <Button x:Name="upload_sd" Content="Загрузить фотографию в профиль" Grid.Column="4" HorizontalAlignment="Left" Margin="221,438,0,0" VerticalAlignment="Top" Width="210" Click="Button_Click_4" Grid.ColumnSpan="2"/>
+        <Button x:Name="change" Content="Перейти к 3D " Grid.Column="2" Margin="165,336,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
+        
+    </Grid>
+</Window>
