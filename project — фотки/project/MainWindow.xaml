@@ -56,11 +56,13 @@
         <Image x:Name="photo_sd" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2" />
         <Button Content="Минимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_3"/>
 
-        <Canvas x:Name="draw_fr" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_fr_MouseDown" MouseUp="draw_fr_MouseUp" MouseMove="draw_fr_MouseMove" >
-            <Canvas.Background>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" Opacity="0"/>
-            </Canvas.Background>
-        </Canvas>
+            <Canvas x:Name="draw_fr" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_fr_MouseDown" MouseUp="draw_fr_MouseUp" MouseMove="draw_fr_MouseMove" >
+                <Canvas.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" Opacity="0"/>
+                </Canvas.Background>
+                <Ellipse x:Name="border" Fill="#7F838383" Height="246" Canvas.Left="64" Stroke="Red" Canvas.Top="82" Width="194" MouseRightButtonDown="border_MouseRightButtonDown"/>
+            </Canvas>
+
 
         <Canvas x:Name="draw_sd" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_sd_MouseDown" MouseUp="draw_sd_MouseUp" MouseMove="draw_sd_MouseMove" Opacity="0">
             <Canvas.Background>
@@ -81,6 +83,9 @@
         <RadioButton x:Name="ears_sel" Content="Уши" Grid.Column="3" HorizontalAlignment="Left" Margin="117,510,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="face_width_sel" Content="Ширина лица" Grid.Column="3" HorizontalAlignment="Left" Margin="193,490,0,0" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
         <RadioButton x:Name="face_length_sel" Content="Длина лица" Grid.Column="3" HorizontalAlignment="Left" Margin="193,510,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Slider x:Name="border_sel" Grid.Column="3" HorizontalAlignment="Left" Margin="117,549,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="193" ValueChanged="border_sel_ValueChanged" Visibility="Hidden" Maximum="350"/>
+        <Border x:Name="bo1" BorderBrush="Black" BorderThickness="1" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" Grid.ColumnSpan="2"/>
+        <Border x:Name="bo2" BorderBrush="Black" BorderThickness="1" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

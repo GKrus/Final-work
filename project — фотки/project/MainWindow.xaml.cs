@@ -392,6 +392,8 @@ namespace project
                 bm1.CacheOption = BitmapCacheOption.OnLoad;
                 bm1.EndInit();
                 photo_fr.Source = bm1;
+                
+                //border_sel.Visibility = Visibility.Visible;
                
             }
             // MessageBox.Show("Файл не выбран!");
@@ -417,6 +419,8 @@ namespace project
                 lips_sel.Visibility = Visibility.Hidden;
                 face_width_sel.Visibility = Visibility.Hidden;
                 face_length_sel.Visibility = Visibility.Hidden;
+                bo1.Visibility = Visibility.Hidden;
+                bo2.Visibility = Visibility.Hidden;
                 change.Content = "Перейти к фото";
             }
             else
@@ -437,6 +441,8 @@ namespace project
                 lips_sel.Visibility = Visibility.Visible;
                 face_width_sel.Visibility = Visibility.Visible;
                 face_length_sel.Visibility = Visibility.Visible;
+                bo1.Visibility = Visibility.Visible;
+                bo2.Visibility = Visibility.Visible;
                 change.Content = "Перейти к 3D";
             }
         }
@@ -581,6 +587,17 @@ namespace project
         }
 
         private void draw_sd_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void border_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            border.Visibility = Visibility.Hidden;
+            border_sel.Visibility = Visibility.Hidden;
+        }
+
+        private void border_sel_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
         }
