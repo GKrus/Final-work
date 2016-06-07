@@ -36,6 +36,7 @@ namespace project
         SunLight sun_light;
         int i;
         Line line;
+        Point point;
         bool draw;
        
 
@@ -362,7 +363,7 @@ namespace project
                 bm1.UriSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
                 bm1.CacheOption = BitmapCacheOption.OnLoad;
                 bm1.EndInit();
-                photo_fr.Source = bm1;
+                photo_sd.Source = bm1;
 
             }
             
@@ -401,10 +402,21 @@ namespace project
             if (viewPort3d.Visibility != Visibility.Visible)
             {
                 viewPort3d.Visibility = Visibility.Visible;
+                draw_fr.Visibility = Visibility.Hidden;
+                draw_sd.Visibility = Visibility.Hidden;
                 photo_fr.Visibility = Visibility.Hidden;
                 photo_sd.Visibility = Visibility.Hidden;
                 upload_fr.Visibility = Visibility.Hidden;
                 upload_sd.Visibility = Visibility.Hidden;
+                nose_sel.Visibility = Visibility.Hidden;
+                eyes_sel.Visibility = Visibility.Hidden;
+                chin_sel.Visibility = Visibility.Hidden;
+                cheelbones_sel.Visibility = Visibility.Hidden;
+                forehead_sel.Visibility = Visibility.Hidden;
+                ears_sel.Visibility = Visibility.Hidden;
+                lips_sel.Visibility = Visibility.Hidden;
+                face_width_sel.Visibility = Visibility.Hidden;
+                face_length_sel.Visibility = Visibility.Hidden;
                 change.Content = "Перейти к фото";
             }
             else
@@ -412,8 +424,19 @@ namespace project
                 viewPort3d.Visibility = Visibility.Hidden;
                 photo_fr.Visibility = Visibility.Visible;
                 photo_sd.Visibility = Visibility.Visible;
+                draw_fr.Visibility = Visibility.Visible;
+                draw_sd.Visibility = Visibility.Visible;
                 upload_fr.Visibility = Visibility.Visible;
                 upload_sd.Visibility = Visibility.Visible;
+                nose_sel.Visibility = Visibility.Visible;
+                eyes_sel.Visibility = Visibility.Visible;
+                chin_sel.Visibility = Visibility.Visible;
+                cheelbones_sel.Visibility = Visibility.Visible;
+                forehead_sel.Visibility = Visibility.Visible;
+                ears_sel.Visibility = Visibility.Visible;
+                lips_sel.Visibility = Visibility.Visible;
+                face_width_sel.Visibility = Visibility.Visible;
+                face_length_sel.Visibility = Visibility.Visible;
                 change.Content = "Перейти к 3D";
             }
         }
@@ -421,40 +444,140 @@ namespace project
         private void draw_fr_MouseDown(object sender, MouseButtonEventArgs e)
         {
            
-            Point point = e.GetPosition(draw_fr);
-            line = new Line();
-            line.Stroke = Brushes.Black;
-            line.X1 = line.X2 = point.X;
-            line.Y1 = line.Y2 = point.Y;
-            draw_fr.Children.Add(line);
-            draw = true;
+            point = e.GetPosition(draw_fr);
+            
         }
+
         private void draw_fr_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            draw = false;
-            //draw_fr.InvalidateVisual();
+            if (chin_sel.IsChecked == true)//ok + for test
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                chin.Value = Math.Abs(point.X - point2.X) / 7;
+            }
+
+            //all down -- none ok
+
+            if (lips_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                lips.Value = Math.Abs(point.X - point2.X) / 7;
+            }
+            if (forehead_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                forehead.Value = Math.Abs(point.Y - point2.Y) / 7;
+            }
+            if (ears_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                ears.Value = Math.Abs(point.X - point2.X);
+            }
+            if (face_width_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                face_width.Value = Math.Abs(point.X - point2.X) / 15;
+            }
+            if (face_length_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_fr);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_fr.Children.Add(line);
+                face_length.Value = Math.Abs(point.Y - point2.Y) / 15;
+            }
+            
         }
 
         private void draw_fr_MouseMove(object sender, MouseEventArgs e)
         {
-            if(draw)
-            {
-                Point pointEnd = e.GetPosition(draw_fr);
-                line.X2 = pointEnd.X;
-                line.Y2 = pointEnd.Y;
-            }
+
         }
 
 //-----------------------------------------------------------------------------------------------------------------------------
        
         private void draw_sd_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            point = e.GetPosition(draw_sd);
         }
 
         private void draw_sd_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
+            if (nose_sel.IsChecked == true)//ok
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_sd);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_sd.Children.Add(line);
+                nose.Value = Math.Abs(point.Y - point2.Y) / 4;
+            }
+            if (eyes_sel.IsChecked == true)//for test
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_sd);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_sd.Children.Add(line);
+                eyes.Value = Math.Sqrt(Math.Pow(point.Y - point2.Y, 2) + Math.Pow(point.X - point2.X, 2)) / 4;
+            }
+            if (cheelbones_sel.IsChecked == true)
+            {
+                line = new Line();
+                Point point2 = e.GetPosition(draw_sd);
+                line.Stroke = Brushes.Red;
+                line.X1 = point.X;
+                line.Y1 = point.Y;
+                line.X2 = point2.X;
+                line.Y2 = point2.Y;
+                draw_sd.Children.Add(line);
+                cheelbones.Value = Math.Sqrt(Math.Pow(point.Y - point2.Y, 2) + Math.Pow(point.X - point2.X, 2)) / 7;
+            }
         }
 
         private void draw_sd_MouseMove(object sender, MouseEventArgs e)
@@ -463,47 +586,6 @@ namespace project
         }
 
 
+
     }
-
-    // доп  класс
-
-    //public class MainViewModel
-    //{
-    //    /// <summary>
-    //    /// Initializes a new instance of the <see cref="MainViewModel"/> class.
-    //    /// </summary>
-    //    public MainViewModel()
-    //    {
-    //        // Create a model group
-    //        var modelGroup = new Model3DGroup();
-
-    //        // Create a mesh builder and add a box to it
-    //        var meshBuilder = new MeshBuilder(false, false);
-    //        meshBuilder.AddBox(new Point3D(0, 0, 1), 1, 2, 0.5);
-    //        meshBuilder.AddBox(new Rect3D(0, 0, 1.2, 0.5, 1, 0.4));
-
-    //        // Create a mesh from the builder (and freeze it)
-    //        var mesh = meshBuilder.ToMesh(true);
-
-    //        // Create some materials
-    //        var greenMaterial = MaterialHelper.CreateMaterial(Colors.Green);
-    //        var redMaterial = MaterialHelper.CreateMaterial(Colors.Red);
-    //        var blueMaterial = MaterialHelper.CreateMaterial(Colors.Blue);
-    //        var insideMaterial = MaterialHelper.CreateMaterial(Colors.Yellow);
-
-    //        // Add 3 models to the group (using the same mesh, that's why we had to freeze it)
-    //        modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Material = greenMaterial, BackMaterial = insideMaterial });
-    //        modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Transform = new TranslateTransform3D(-2, 0, 0), Material = redMaterial, BackMaterial = insideMaterial });
-    //        modelGroup.Children.Add(new GeometryModel3D { Geometry = mesh, Transform = new TranslateTransform3D(2, 0, 0), Material = blueMaterial, BackMaterial = insideMaterial });
-
-    //        // Set the property, which will be bound to the Content property of the ModelVisual3D (see MainWindow.xaml)
-    //        this.Model = modelGroup;
-    //    }
-
-    //    /// <summary>
-    //    /// Gets or sets the model.
-    //    /// </summary>
-    //    /// <value>The model.</value>
-    //    public Model3D Model { get; set; }
-    //}
 }

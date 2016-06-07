@@ -30,3 +30,5 @@ C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Debug\project
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Debug\project.g.resources
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Debug\project.Properties.Resources.resources
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Debug\project.csproj.GenerateResource.Cache
+C:\Users\German Kuzyura\Desktop\project — фотки\project\bin\Debug\project.exe.CodeAnalysisLog.xml
+C:\Users\German Kuzyura\Desktop\project — фотки\project\bin\Debug\project.exe.lastcodeanalysissucceeded

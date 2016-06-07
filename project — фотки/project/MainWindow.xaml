@@ -52,14 +52,35 @@
         <CheckBox x:Name="side_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
         <TextBox x:Name="side_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,390,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
         <Button Content="Комментарии" Grid.Column="1" HorizontalAlignment="Left" Margin="0,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_2" Grid.ColumnSpan="2"/>
-        <Button Content="Минимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_3"/>
-        <Canvas x:Name="draw_fr" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_fr_MouseDown" MouseUp="draw_fr_MouseUp" MouseMove="draw_fr_MouseMove"/>
-        <Canvas x:Name="draw_sd" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_sd_MouseDown" MouseUp="draw_sd_MouseUp" MouseMove="draw_sd_MouseMove"/>
-        <Button x:Name="upload_fr" Content="Загрузить фотографию в фас" Grid.Column="3" HorizontalAlignment="Left" Margin="117,438,0,0" VerticalAlignment="Top" Width="193" Click="upload_fr_Click" Grid.ColumnSpan="2"/>
         <Image x:Name="photo_fr" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
         <Image x:Name="photo_sd" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2" />
+        <Button Content="Минимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_3"/>
+
+        <Canvas x:Name="draw_fr" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_fr_MouseDown" MouseUp="draw_fr_MouseUp" MouseMove="draw_fr_MouseMove" >
+            <Canvas.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" Opacity="0"/>
+            </Canvas.Background>
+        </Canvas>
+
+        <Canvas x:Name="draw_sd" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" MouseDown="draw_sd_MouseDown" MouseUp="draw_sd_MouseUp" MouseMove="draw_sd_MouseMove" Opacity="0">
+            <Canvas.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" Opacity="0"/>
+            </Canvas.Background>
+        </Canvas>
+
+        <Button x:Name="upload_fr" Content="Загрузить фотографию в фас" Grid.Column="3" HorizontalAlignment="Left" Margin="117,438,0,0" VerticalAlignment="Top" Width="193" Click="upload_fr_Click" Grid.ColumnSpan="2"/>
+
         <Button x:Name="upload_sd" Content="Загрузить фотографию в профиль" Grid.Column="4" HorizontalAlignment="Left" Margin="221,438,0,0" VerticalAlignment="Top" Width="210" Click="Button_Click_4" Grid.ColumnSpan="2"/>
         <Button x:Name="change" Content="Перейти к 3D " Grid.Column="2" Margin="165,336,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
-        
+        <RadioButton x:Name="nose_sel" Content="Нос" Grid.Column="4" HorizontalAlignment="Left" Margin="221,470,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="chin_sel" Content="Подбородок" Grid.Column="3" HorizontalAlignment="Left" Margin="193,470,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="eyes_sel" Content="Глаза" Grid.Column="4" HorizontalAlignment="Left" Margin="221,490,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="lips_sel" Content="Губы" Grid.Column="3" HorizontalAlignment="Left" Margin="117,490,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="forehead_sel" Content="Лоб" Grid.Column="3" HorizontalAlignment="Left" Margin="117,470,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="cheelbones_sel" Content="Скулы" Grid.Column="4" HorizontalAlignment="Left" Margin="221,510,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="ears_sel" Content="Уши" Grid.Column="3" HorizontalAlignment="Left" Margin="117,510,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="face_width_sel" Content="Ширина лица" Grid.Column="3" HorizontalAlignment="Left" Margin="193,490,0,0" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="face_length_sel" Content="Длина лица" Grid.Column="3" HorizontalAlignment="Left" Margin="193,510,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>
