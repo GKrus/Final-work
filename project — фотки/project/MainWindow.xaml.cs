@@ -37,7 +37,7 @@ namespace project
         int i;
         Line line;
         Point point;
-        bool draw;
+        Point point0;
        
 
         public MainWindow()
@@ -346,7 +346,7 @@ namespace project
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
 
-
+            
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.InitialDirectory = "c:\\";
@@ -364,6 +364,7 @@ namespace project
                 bm1.CacheOption = BitmapCacheOption.OnLoad;
                 bm1.EndInit();
                 photo_sd.Source = bm1;
+                draw_sd.Children.Remove(line);
 
             }
             
@@ -392,7 +393,8 @@ namespace project
                 bm1.CacheOption = BitmapCacheOption.OnLoad;
                 bm1.EndInit();
                 photo_fr.Source = bm1;
-                
+                border.Visibility = Visibility.Visible;
+                draw_fr.Children.Remove(line);
                 //border_sel.Visibility = Visibility.Visible;
                
             }
@@ -456,8 +458,8 @@ namespace project
 
         private void draw_fr_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (chin_sel.IsChecked == true)//ok + for test
-            {
+            if (chin_sel.IsChecked == true)//ok 
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -466,13 +468,15 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                chin.Value = Math.Abs(point.X - point2.X) / 7;
+                if (Math.Abs(point.X - point2.X) / 15 < 5) chin.Value = Math.Abs(point.X - point2.X) / 15;
+                else chin.Value = (Math.Abs(point.X - point2.X) / 15) + 1;
             }
 
             //all down -- none ok
 
-            if (lips_sel.IsChecked == true)
+            if (lips_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -481,10 +485,12 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                lips.Value = Math.Abs(point.X - point2.X) / 7;
+                if (Math.Abs(point.Y - point2.Y) / 2 < 5) lips.Value = (Math.Abs(point.Y - point2.Y) / 2) - 1;
+                else lips.Value = (Math.Abs(point.Y - point2.Y) / 2);
             }
-            if (forehead_sel.IsChecked == true)
+            if (forehead_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -493,10 +499,13 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                forehead.Value = Math.Abs(point.Y - point2.Y) / 7;
+
+                if ((Math.Abs(point.Y - point2.Y) / 10) < 5) forehead.Value = (Math.Abs(point.Y - point2.Y) / 10) - 1;
+                else forehead.Value = Math.Abs(point.Y - point2.Y) / 10;
             }
-            if (ears_sel.IsChecked == true)
+            if (ears_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -505,10 +514,11 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                ears.Value = Math.Abs(point.X - point2.X);
+                ears.Value = Math.Abs(point.X - point2.X)/4;
             }
-            if (face_width_sel.IsChecked == true)
+            if (face_width_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -517,10 +527,12 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                face_width.Value = Math.Abs(point.X - point2.X) / 15;
+                if ((Math.Abs(point.X - point2.X) / 30) > 5)  face_width.Value = (Math.Abs(point.X - point2.X) / 30) + 2;
+                else face_width.Value = (Math.Abs(point.X - point2.X) / 30) - 2;
             }
-            if (face_length_sel.IsChecked == true)
+            if (face_length_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
                 line.Stroke = Brushes.Red;
@@ -529,7 +541,8 @@ namespace project
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_fr.Children.Add(line);
-                face_length.Value = Math.Abs(point.Y - point2.Y) / 15;
+                if (Math.Abs(point.Y - point2.Y) > 6) face_length.Value =( Math.Abs(point.Y - point2.Y) / 40) + 1.5;
+                else face_length.Value = (Math.Abs(point.Y - point2.Y) / 40) ;
             }
             
         }
@@ -543,46 +556,54 @@ namespace project
        
         private void draw_sd_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            point = e.GetPosition(draw_sd);
+            point0 = e.GetPosition(draw_sd);
         }
 
         private void draw_sd_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (nose_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
                 line.Stroke = Brushes.Red;
-                line.X1 = point.X;
-                line.Y1 = point.Y;
+                line.X1 = point0.X;
+                line.Y1 = point0.Y;
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_sd.Children.Add(line);
-                nose.Value = Math.Abs(point.Y - point2.Y) / 4;
+                if (point0.Y - point2.Y != 0)
+                nose.Value = Math.Abs(point0.X - point2.X) / 7;
             }
-            if (eyes_sel.IsChecked == true)//for test
+            if (eyes_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
                 line.Stroke = Brushes.Red;
-                line.X1 = point.X;
-                line.Y1 = point.Y;
+                line.X1 = point0.X;
+                line.Y1 = point0.Y;
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_sd.Children.Add(line);
-                eyes.Value = Math.Sqrt(Math.Pow(point.Y - point2.Y, 2) + Math.Pow(point.X - point2.X, 2)) / 4;
+                if (point0.Y - point2.Y != 0)
+                    eyes.Value =20/( Math.Abs(point0.Y - point2.Y) / 4);
+                 //eyes.Value =20/(Math.Sqrt(Math.Pow(point0.Y - point2.Y, 2) + Math.Pow(point0.X - point2.X, 2)) / 4);
             }
-            if (cheelbones_sel.IsChecked == true)
+            if (cheelbones_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
                 line.Stroke = Brushes.Red;
-                line.X1 = point.X;
-                line.Y1 = point.Y;
+                line.X1 = point0.X;
+                line.Y1 = point0.Y;
                 line.X2 = point2.X;
                 line.Y2 = point2.Y;
                 draw_sd.Children.Add(line);
-                cheelbones.Value = Math.Sqrt(Math.Pow(point.Y - point2.Y, 2) + Math.Pow(point.X - point2.X, 2)) / 7;
+                if (point0.Y - point2.Y != 0)
+                cheelbones.Value =25/(Math.Sqrt(Math.Pow(point0.Y - point2.Y, 2) + Math.Pow(point0.X - point2.X, 2)) / 7);
+                MessageBox.Show("Советуем уделить больше вниманию корректировки этого параметра в правой панели.");
             }
         }
 
@@ -601,8 +622,6 @@ namespace project
         {
 
         }
-
-
 
     }
 }
