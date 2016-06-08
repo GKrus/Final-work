@@ -68,6 +68,7 @@
             <Canvas.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" Opacity="0"/>
             </Canvas.Background>
+            <Ellipse x:Name="border_sd" Fill="#7F838383" Height="246" Canvas.Left="64" Stroke="Red" Canvas.Top="82" Width="194" MouseRightButtonDown="border_sd_MouseRightButtonDown"/>
         </Canvas>
 
         <Button x:Name="upload_fr" Content="Загрузить фотографию в фас" Grid.Column="3" HorizontalAlignment="Left" Margin="117,438,0,0" VerticalAlignment="Top" Width="193" Click="upload_fr_Click" Grid.ColumnSpan="2"/>

@@ -20,9 +20,6 @@ using Microsoft.Win32;
 
 namespace project
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         double sharp;
@@ -39,7 +36,6 @@ namespace project
         Point point;
         Point point0;
        
-
         public MainWindow()
         {
             InitializeComponent();
@@ -131,14 +127,8 @@ namespace project
         }
 //---------------------------------------------------------------------------------------------------------------------
         
-        // имопрт модели 
-
         private const string MODEL_PATH = "Female Head.obj";
-         //<summary>
-         //Display 3D Model
-         //</summary>
-         //<param name="model">Path to the Model file</param>
-         //<returns>3D Model Content</returns>
+
         private Model3D Display3d(string model)
         {
             Model3D device = null;
@@ -169,8 +159,7 @@ namespace project
                 MessageBox.Show("Exception Error : " + e.StackTrace);
             }
             return device;
-        }
-       
+        }       
 
         private void def_light_Click(object sender, RoutedEventArgs e)
         {
@@ -364,6 +353,7 @@ namespace project
                 bm1.CacheOption = BitmapCacheOption.OnLoad;
                 bm1.EndInit();
                 photo_sd.Source = bm1;
+                border_sd.Visibility = Visibility.Visible;
                 draw_sd.Children.Remove(line);
 
             }
@@ -451,14 +441,13 @@ namespace project
 
         private void draw_fr_MouseDown(object sender, MouseButtonEventArgs e)
         {
-           
-            point = e.GetPosition(draw_fr);
-            
+            point = e.GetPosition(draw_fr); 
         }
 
         private void draw_fr_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (chin_sel.IsChecked == true)//ok 
+            {
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -488,6 +477,7 @@ namespace project
                 if (Math.Abs(point.Y - point2.Y) / 2 < 5) lips.Value = (Math.Abs(point.Y - point2.Y) / 2) - 1;
                 else lips.Value = (Math.Abs(point.Y - point2.Y) / 2);
             }
+            
             if (forehead_sel.IsChecked == true)//ok
             {
                 draw_fr.Children.Remove(line);
@@ -544,9 +534,8 @@ namespace project
                 if (Math.Abs(point.Y - point2.Y) > 6) face_length.Value =( Math.Abs(point.Y - point2.Y) / 40) + 1.5;
                 else face_length.Value = (Math.Abs(point.Y - point2.Y) / 40) ;
             }
-            
-        }
-
+            }
+      
         private void draw_fr_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -618,10 +607,17 @@ namespace project
             border_sel.Visibility = Visibility.Hidden;
         }
 
+        private void border_sd_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            border_sd.Visibility = Visibility.Hidden;
+            border_sel.Visibility = Visibility.Hidden;
+        }
+
         private void border_sel_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
         }
 
     }
+
 }
