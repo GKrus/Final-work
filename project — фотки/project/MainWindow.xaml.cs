@@ -355,6 +355,7 @@ namespace project
                 photo_sd.Source = bm1;
                 border_sd.Visibility = Visibility.Visible;
                 draw_sd.Children.Remove(line);
+                draw_fr.Children.Remove(line);
 
             }
             
@@ -384,6 +385,7 @@ namespace project
                 bm1.EndInit();
                 photo_fr.Source = bm1;
                 border.Visibility = Visibility.Visible;
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 //border_sel.Visibility = Visibility.Visible;
                
@@ -448,6 +450,7 @@ namespace project
         {
             if (chin_sel.IsChecked == true)//ok 
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -465,6 +468,7 @@ namespace project
 
             if (lips_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -480,6 +484,7 @@ namespace project
             
             if (forehead_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -495,6 +500,7 @@ namespace project
             }
             if (ears_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -508,6 +514,7 @@ namespace project
             }
             if (face_width_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -522,6 +529,7 @@ namespace project
             }
             if (face_length_sel.IsChecked == true)//ok
             {
+                draw_sd.Children.Remove(line);
                 draw_fr.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_fr);
@@ -552,6 +560,7 @@ namespace project
         {
             if (nose_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
@@ -566,6 +575,7 @@ namespace project
             }
             if (eyes_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
@@ -581,6 +591,7 @@ namespace project
             }
             if (cheelbones_sel.IsChecked == true)//ok
             {
+                draw_fr.Children.Remove(line);
                 draw_sd.Children.Remove(line);
                 line = new Line();
                 Point point2 = e.GetPosition(draw_sd);
