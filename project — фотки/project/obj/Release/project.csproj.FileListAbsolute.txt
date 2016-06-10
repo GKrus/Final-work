@@ -13,3 +13,4 @@ C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Release\proje
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Release\project.csproj.GenerateResource.Cache
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Release\project.exe
 C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Release\project.pdb
+C:\Users\German Kuzyura\Desktop\project — фотки\project\obj\Release\project.csprojResolveAssemblyReference.cache

@@ -32,6 +32,7 @@ namespace project
         ThreePointLights light;
         SunLight sun_light;
         int i;
+        int n;
         Line line;
         Point point;
         Point point0;
@@ -40,6 +41,7 @@ namespace project
         {
             InitializeComponent();
             i = 0;
+            n = 0;
             light = new ThreePointLights();
             nose_com.IsReadOnly = true;
             //var studio_light = new DefaultLights();
@@ -415,6 +417,39 @@ namespace project
                 face_length_sel.Visibility = Visibility.Hidden;
                 bo1.Visibility = Visibility.Hidden;
                 bo2.Visibility = Visibility.Hidden;
+                
+                nose_com.Visibility = Visibility.Visible;
+                nose_com.IsEnabled = true;
+
+                sharp_com.Visibility = Visibility.Visible;
+                sharp_com.IsEnabled = true;
+                
+                up_com.Visibility = Visibility.Visible;
+                up_com.IsEnabled = true;
+                
+                back_com.Visibility = Visibility.Visible;
+                back_com.IsEnabled = true;
+                
+                stif_com.Visibility = Visibility.Visible;
+                stif_com.IsEnabled = true;
+                
+                flags_com.Visibility = Visibility.Visible;
+                flags_com.IsEnabled = true;
+                side_com.Visibility = Visibility.Visible;
+                side_com.IsEnabled = true;
+                comm.IsEnabled = true;
+                calc.IsEnabled = true;
+                if(n!=0)
+                {
+                    sharp_tick.Visibility = Visibility.Visible;
+                    nose_tick.Visibility = Visibility.Visible;
+                    up_tick.Visibility = Visibility.Visible;
+                    back_tick.Visibility = Visibility.Visible;
+                    stif_tick.Visibility = Visibility.Visible;
+                    flags_tick.Visibility = Visibility.Visible;
+                    side_tick.Visibility = Visibility.Visible;
+                }
+                n++;
                 change.Content = "Перейти к фото";
             }
             else
@@ -437,6 +472,31 @@ namespace project
                 face_length_sel.Visibility = Visibility.Visible;
                 bo1.Visibility = Visibility.Visible;
                 bo2.Visibility = Visibility.Visible;
+
+                nose_tick.Visibility = Visibility.Hidden;
+                nose_com.Visibility = Visibility.Hidden;
+                nose_com.IsEnabled = false;
+
+                sharp_tick.Visibility = Visibility.Hidden;
+                sharp_com.Visibility = Visibility.Hidden;
+                sharp_com.IsEnabled = false;
+                up_tick.Visibility = Visibility.Hidden;
+                up_com.Visibility = Visibility.Hidden;
+                up_com.IsEnabled = false;
+                back_tick.Visibility = Visibility.Hidden;
+                back_com.Visibility = Visibility.Hidden;
+                back_com.IsEnabled = false;
+                stif_tick.Visibility = Visibility.Hidden;
+                stif_com.Visibility = Visibility.Hidden;
+                stif_com.IsEnabled = false;
+                flags_tick.Visibility = Visibility.Hidden;
+                flags_com.Visibility = Visibility.Hidden;
+                flags_com.IsEnabled = false;
+                side_tick.Visibility = Visibility.Hidden;
+                side_com.Visibility = Visibility.Hidden;
+                side_com.IsEnabled = false;
+                comm.IsEnabled = false;
+                calc.IsEnabled = false;
                 change.Content = "Перейти к 3D";
             }
         }

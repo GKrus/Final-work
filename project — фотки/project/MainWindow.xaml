@@ -33,7 +33,7 @@
         <Label Content="Ширина лица" HorizontalAlignment="Left" Margin="15,250,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
         <Slider x:Name="face_length" HorizontalAlignment="Left" Margin="91,281,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  Height="18" Grid.Column="2" Grid.ColumnSpan="2"/>
         <Label Content="Длина лица" HorizontalAlignment="Left" Margin="15,277,0,0" VerticalAlignment="Top" Height="25" Width="96" Grid.ColumnSpan="3"/>
-        <Button Content="Расчитать " HorizontalAlignment="Left" Margin="0,311,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="20" BorderThickness="1" Cursor="Arrow" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="calc" Content="Расчитать " HorizontalAlignment="Left" Margin="0,311,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="20" BorderThickness="1" Cursor="Arrow" Grid.ColumnSpan="2" Grid.Column="1"/>
         <h:HelixViewport3D x:Name="viewPort3d" ZoomExtentsWhenLoaded="true" Margin="10" Grid.ColumnSpan="2" Grid.Column="4" RotateAroundMouseDownPoint="True"   />
         <Button x:Name="def_light" Content="Свет по умолчанию" Grid.Column="2" Margin="165,311,0,0" VerticalAlignment="Top" Click="def_light_Click"/>
         <Button Content="Максимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,311,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1"/>
@@ -51,7 +51,7 @@
         <TextBox x:Name="flags_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,330,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
         <CheckBox x:Name="side_tick" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Height="15" Width="16" Visibility="Hidden"  />
         <TextBox x:Name="side_com" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="31,390,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="182" BorderBrush="{x:Null}" Focusable="False" Cursor="Arrow" FocusVisualStyle="{x:Null}" IsEnabled="False"/>
-        <Button Content="Комментарии" Grid.Column="1" HorizontalAlignment="Left" Margin="0,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_2" Grid.ColumnSpan="2"/>
+        <Button x:Name="comm" Content="Комментарии" Grid.Column="1" HorizontalAlignment="Left" Margin="0,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_2" Grid.ColumnSpan="2"/>
         <Image x:Name="photo_fr" Grid.Column="3" HorizontalAlignment="Left" Height="410" Margin="54,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
         <Image x:Name="photo_sd" Grid.Column="4" HorizontalAlignment="Left" Height="410" Margin="166,10,0,0" VerticalAlignment="Top" Width="320" Stretch="UniformToFill" Grid.ColumnSpan="2" />
         <Button Content="Минимум" Grid.Column="2" HorizontalAlignment="Left" Margin="80,336,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_3"/>
